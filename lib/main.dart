@@ -10,9 +10,7 @@ class MoviesApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Movies App',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
+      theme: ThemeData(primarySwatch: Colors.indigo),
       home: Home(),
     );
   }
@@ -37,9 +35,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Movies App'),
-      ),
+      appBar: AppBar(title: Text('Movies App')),
       body: FutureBuilder<PopularMovies>(
         future: popularMovies,
         builder: (context, snapshot) {
@@ -91,9 +87,13 @@ class _HomeState extends State<Home> {
             children: <Widget>[
               Container(
                 width: 120,
+                height:
+                    180, // Tambahkan tinggi agar poster tidak hitam/collapse
                 child: CachedNetworkImage(
                   imageUrl: poster,
-                  placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+                  fit: BoxFit.cover, // Agar gambar pas dan tidak gepeng
+                  placeholder: (context, url) =>
+                      Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) => Icon(Icons.error),
                 ),
               ),
@@ -107,7 +107,10 @@ class _HomeState extends State<Home> {
                     children: <Widget>[
                       Text(
                         title,
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       SizedBox(height: 10),
                       Row(
@@ -145,9 +148,7 @@ class MovieDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(movie.title),
-      ),
+      appBar: AppBar(title: Text(movie.title)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
@@ -157,10 +158,7 @@ class MovieDetail extends StatelessWidget {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
             SizedBox(height: 10),
-            Text(
-              movie.overview,
-              style: TextStyle(fontSize: 16),
-            ),
+            Text(movie.overview, style: TextStyle(fontSize: 16)),
           ],
         ),
       ),

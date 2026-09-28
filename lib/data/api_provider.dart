@@ -1,9 +1,10 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' show Client, Response;
 import 'package:minggu_10_moviedb/model/popular_movies.dart';
 
 class ApiProvider {
-  String apiKey = '0fc5740199faa752a813c897f659e8'; // atau ganti key kamu
+  String apiKey = 'a18686e015158d29c97ac762920b061c'; // atau ganti key kamu
   String baseUrl = 'https://api.themoviedb.org/3';
   Client client = Client();
 
